@@ -2,6 +2,8 @@
 
 ## 1.9.0 (Unreleased)
 
+### Features Added
+
 ### Bugs Fixed
 
 - Significant improvements to IntentResolution evaluator. New version has less variance, is nearly 2x faster and consumes fewer tokens.
