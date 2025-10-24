@@ -325,10 +325,13 @@ class AsyncPrompty:
             timeout=timeout,
         )
 
+        # Extract response_format from the new text.format structure if it exists
+        response_format = params.get("text", {}).get("format", {}) if "text" in params else params.get("response_format", {})
+
         return await format_llm_response(
             response=response,
             is_first_choice=self._data.get("model", {}).get("response", "first").lower() == "first",
-            response_format=params.get("response_format", {}),
+            response_format=response_format,
             outputs=self._outputs,
             inputs=inputs,
         )

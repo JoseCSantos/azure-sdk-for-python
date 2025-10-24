@@ -458,6 +458,15 @@ def prepare_open_ai_request_params(
     #         _validate_functions(params["functions"])
     #         params["function_call"] = validate_function_call(params.get("function_call", None))
 
+    # Convert old response_format to new Responses API format (text.format)
+    # The Azure OpenAI API now uses the Responses API format where response_format
+    # has been moved to text.format
+    if "response_format" in params:
+        response_format = params.pop("response_format")
+        params["text"] = {
+            "format": response_format
+        }
+
     return params
 
 
